@@ -11,7 +11,10 @@ const useSendMessage = () => {
     setSelectedFile,
     setFileUploadProgress
   ) => {
-    if (selectedFile) {
+    console.log(data);
+    console.log(setMessage);
+    console.log(selectedFile);
+    if (selectedFile != null) {
       try {
         const formData = new FormData();
         formData.append('selectedfile', selectedFile);

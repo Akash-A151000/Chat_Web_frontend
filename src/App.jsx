@@ -22,6 +22,7 @@ import { setLogout } from './state/auth/authSlice';
 import ServerErrorPage from './Components/ServerErrorPage';
 
 function App() {
+  const recipient = useSelector((state) => state.chat.recipient);
   const currentUser = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [serverAvailable, setServerAvailable] = useState(true);
@@ -29,20 +30,19 @@ function App() {
 
   useEffect(() => {
     const handleVisibilityChange = () => {
-      if (isAuthenticated) {
+      if (currentUser && isAuthenticated) {
         const onlineStatus = !document.hidden;
         updateOnlineStatus(onlineStatus);
       }
     };
 
-    if (isAuthenticated) {
+    if (currentUser && isAuthenticated) {
       socket.emit('add-user', currentUser._id, (response) => {
         if (response.error) {
           console.error('Error adding user to socket:', response.error);
         }
       });
       socket.on('update-online', (data) => {
-        dispatch(setUpdateOnline({ recipient: data }));
         dispatch(setUpdateUser({ user: data }));
       });
     }
@@ -53,7 +53,7 @@ function App() {
       socket.off('update-online');
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [isAuthenticated]);
+  }, []);
 
   const updateOnlineStatus = async (onlineStatus) => {
     try {

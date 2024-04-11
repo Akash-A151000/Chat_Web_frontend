@@ -19,7 +19,7 @@ const Users = () => {
   const users = useSelector((state) => state.chat.onlineUsers);
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [users]);
 
   const handleClick = async (senderId, recipientId) => {
     try {

@@ -25,7 +25,7 @@ const ChatArea = () => {
   const user = useSelector((state) => state.auth);
   const { userId } = useParams();
 
-  const [selectedFile, setSelectedFile] = useState([]);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const { loading } = useGetMessages(user, userId);
   const { sendMessage } = useSendMessage();

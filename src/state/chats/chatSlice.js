@@ -65,6 +65,9 @@ const chatSlice = createSlice({
     setMessages: (state, action) => {
       state.chat = action.payload.messages;
     },
+    setUpdateOnline: (state, action) => {
+      state.recipient.online = action.payload.recipient.online;
+    },
     setCleanUp: (state, action) => {
       state.onlineUsers = [];
       state.chat = [];
@@ -84,4 +87,5 @@ export const {
   setUpdateInitiatedChats,
   setInitiatedChats,
   setCleanUp,
+  setUpdateOnline,
 } = chatSlice.actions;

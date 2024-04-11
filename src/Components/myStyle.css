@@ -37,11 +37,13 @@ flex-direction: column;
 }
 
 .search-box{
+    width: 100%;
     outline-width: 0;
     border: none;
     font-size: 1rem;
     margin-left: 10px;
     color: rgba(0,0,0,0.54);
+    display: block;
 }
 .sb-conversations{
     background-color: white;
@@ -169,6 +171,9 @@ cursor:pointer
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 0.75rem;
     padding: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .chatArea-container{
@@ -378,3 +383,18 @@ cursor:pointer
 .list-item:active{
     background-color: white;
 }
+
+.other-message-container{
+    width: 200px;
+}
+
+.download{
+    margin: 4px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .download:hover{
+    cursor: pointer;
+  }

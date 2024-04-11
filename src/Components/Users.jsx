@@ -30,7 +30,6 @@ const Users = () => {
           recipientId,
         }
       );
-      // console.log(createChat);
       dispatch(setUpdateInitiatedChats({ chat: createChat.data.chat }));
     } catch (error) {
       console.log(error);

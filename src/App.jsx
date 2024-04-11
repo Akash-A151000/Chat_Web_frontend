@@ -10,8 +10,12 @@ import CreateGroups from './Components/CreateGroups';
 import Users from './Components/Users';
 import Groups from './Components/Groups';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUpdateUser, setCleanUp } from './state/chats/chatSlice';
-
+import {
+  setUpdateUser,
+  setCleanUp,
+  setUpdateOnline,
+} from './state/chats/chatSlice';
+import PageNotFound from './Components/PageNotFound';
 import { Toaster } from 'react-hot-toast';
 import { setLogout } from './state/auth/authSlice';
 
@@ -38,6 +42,7 @@ function App() {
         }
       });
       socket.on('update-online', (data) => {
+        dispatch(setUpdateOnline({ recipient: data }));
         dispatch(setUpdateUser({ user: data }));
       });
     }
@@ -95,6 +100,7 @@ function App() {
               element={isAuthenticated ? <CreateGroups /> : <Navigate to='/' />}
             />
           </Route>
+          <Route path='*' element={<PageNotFound />} />
         </Routes>
       ) : (
         <ServerErrorPage />
